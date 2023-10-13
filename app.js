@@ -1,4 +1,3 @@
-// Items
 
 const menu = [
   {
@@ -75,8 +74,6 @@ const menu = [
   },
 ];
 
-// Start Coding 
-
 const sectionCenter = document.querySelector(".section-center");
 
 const filterBtns = document.querySelectorAll(".filter-btn");
@@ -89,12 +86,19 @@ filterBtns.forEach(function(btn){
   btn.addEventListener("click", function(e){
     const catagory = e.currentTarget.dataset.id;
     const menuCatagory = menu.filter(function(menuItem){
-      console.log(menuItem.category);
-      return menuItem;
-    })
+      if (menuItem.category === catagory){
+        return menuItem;
+      }
+    });
+    if(catagory === 'all'){
+      displayMenuItems(menu);
+    }
+    else{
+      displayMenuItems(menuCatagory);
+    }
     
-  })
-})
+  });
+});
 
 function displayMenuItems (menuItems){
   let displayMenu = menuItems.map(function(item){
