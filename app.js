@@ -79,8 +79,25 @@ const menu = [
 
 const sectionCenter = document.querySelector(".section-center");
 
+const filterBtns = document.querySelectorAll(".filter-btn");
+
 window.addEventListener("DOMContentLoaded", function(){
-  let displayMenu = menu.map(function(item){
+  displayMenuItems(menu);
+});
+
+filterBtns.forEach(function(btn){
+  btn.addEventListener("click", function(e){
+    const catagory = e.currentTarget.dataset.id;
+    const menuCatagory = menu.filter(function(menuItem){
+      console.log(menuItem.category);
+      return menuItem;
+    })
+    
+  })
+})
+
+function displayMenuItems (menuItems){
+  let displayMenu = menuItems.map(function(item){
     return `
     <article class="menu-item">
       <img src=${item.img} class="photo" alt=${item.title}>
@@ -97,5 +114,5 @@ window.addEventListener("DOMContentLoaded", function(){
     
   });
   displayMenu = displayMenu.join("");
-  console.log(displayMenu);
-})
+  sectionCenter.innerHTML = displayMenu;
+}
